@@ -2,14 +2,13 @@ import { addVideo, getVideo } from "../services/classcontentService.js";
 
 const addAllVideoController=async (req, res) => {
     try {
-      const { title,day,batch, videoUrl } = req.body;
-  
+      const { title,subject,day,batch, videoUrl } = req.body;
+  console.log(title,subject,day,batch,videoUrl)
       // Ensure it's an embed URL (optional validation)
       if (!videoUrl.includes("youtube.com/embed/")) {
         return res.status(400).json({ message: "Invalid YouTube embed URL" });
       }
-  
-      const newClass =await addVideo({title,day,batch,videoUrl})
+      const newClass =await addVideo({title,subject,day,batch,videoUrl})
       res.status(201).json({ message: "Class added successfully!", newClass });
     } catch (error) {
       res.status(500).json({ message: "Server error", error });

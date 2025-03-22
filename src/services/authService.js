@@ -23,7 +23,7 @@ const userCreate = async (data) => {
 };
 
 const userLogin = async (data) => {
-  const userExisting = await User.findOne({ email: data.email });
+  const userExisting = await User.findOne({ phone: data.phone });
 
   if (!userExisting) throw new Error("user not exists");
   const isMatch = bcrypt.compareSync(data.password, userExisting.password);
